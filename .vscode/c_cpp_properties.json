@@ -1,0 +1,59 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/home/light/project/LCD/include",
+                "/home/light/project/LCD",
+                "/home/light/project/LCD/.pio/libdeps/black_f407zg/lvgl",
+                "/home/light/project/LCD/.pio/libdeps/black_f407zg/lvgl/src",
+                "/home/light/project/LCD/Core/Inc",
+                "/home/light/project/LCD/Drivers/CMSIS/Include",
+                "/home/light/project/LCD/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+                "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc",
+                "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                "/home/light/project/LCD/lib/custom",
+                "/home/light/project/LCD/lib/generated",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/light/project/LCD/include",
+                    "/home/light/project/LCD",
+                    "/home/light/project/LCD/.pio/libdeps/black_f407zg/lvgl",
+                    "/home/light/project/LCD/.pio/libdeps/black_f407zg/lvgl/src",
+                    "/home/light/project/LCD/Core/Inc",
+                    "/home/light/project/LCD/Drivers/CMSIS/Include",
+                    "/home/light/project/LCD/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+                    "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc",
+                    "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                    "/home/light/project/LCD/lib/custom",
+                    "/home/light/project/LCD/lib/generated",
+                    ""
+                ]
+            },
+            "defines": [
+                "F_CPU=168000000L",
+                "PLATFORMIO=60104",
+                "STM32F4",
+                "STM32F407xx",
+                "STM32F40_41xxx",
+                "STM32F407ZGTx",
+                ""
+            ],
+            "compilerPath": "/home/light/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc",
+            "compilerArgs": [
+                "-mthumb",
+                "-mcpu=cortex-m4",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
