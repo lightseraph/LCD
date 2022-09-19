@@ -28,8 +28,6 @@
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
 #include "stdio.h"
-#include "lvgl.h"
-#include "demos/lv_demos.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,12 +93,10 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  LCD_Init();
+
   // POINT_COLOR = RED;
   // printf("LCD ID:%04X\r\n", lcddev.id); //将LCD ID打印到lcd_id数组
   // printf("Hello world\r\n");
-  lv_init();
-  lv_demo_stress();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,10 +106,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    /* POINT_COLOR = WHITE;
+    POINT_COLOR = WHITE;
     BACK_COLOR = RED;
     LCD_ShowString(10, 40, 240, 40, 24, "LCD_Test, 1234567890");
-    HAL_Delay(2000); */
+    HAL_Delay(2000);
     // HAL_GPIO_TogglePin(BL_GPIO_Port, BL_Pin);
   }
   /* USER CODE END 3 */
