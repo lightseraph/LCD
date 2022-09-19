@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.ino": "cpp",
+        "lv_demos.h": "c"
+    }
+}
