@@ -6,9 +6,9 @@
 
 #include "events_init.h"
 #include <stdio.h>
-#include "lvgl.h"
+#include "/lvgl/lvgl.h"
 
-#include "../custom/custom.h"
+#include "../custom.h"
 
 void events_init(lv_ui *ui)
 {
@@ -23,7 +23,7 @@ static void screen_btn_3_event_handler(lv_event_t *e)
 	{
 		lv_demo_music_play(2);
 	}
-		break;
+	break;
 	default:
 		break;
 	}
@@ -38,7 +38,7 @@ static void screen_btn_2_event_handler(lv_event_t *e)
 	{
 		lv_demo_music_play(1);
 	}
-		break;
+	break;
 	default:
 		break;
 	}
@@ -53,7 +53,7 @@ static void screen_btn_1_event_handler(lv_event_t *e)
 	{
 		lv_demo_music_play(0);
 	}
-		break;
+	break;
 	default:
 		break;
 	}
@@ -66,14 +66,16 @@ static void screen_imgbtn_play_event_handler(lv_event_t *e)
 	{
 	case LV_EVENT_RELEASED:
 	{
-				if (lv_obj_has_state(guider_ui.screen_imgbtn_play, LV_STATE_CHECKED))
-				{
-					lv_demo_music_resume();
-				} else {
-					lv_demo_music_pause();
-				}
+		if (lv_obj_has_state(guider_ui.screen_imgbtn_play, LV_STATE_CHECKED))
+		{
+			lv_demo_music_resume();
+		}
+		else
+		{
+			lv_demo_music_pause();
+		}
 	}
-		break;
+	break;
 	default:
 		break;
 	}
@@ -88,7 +90,7 @@ static void screen_img_icn_left_event_handler(lv_event_t *e)
 	{
 		lv_demo_music_album_next(false);
 	}
-		break;
+	break;
 	default:
 		break;
 	}
@@ -103,7 +105,7 @@ static void screen_img_icn_right_event_handler(lv_event_t *e)
 	{
 		lv_demo_music_album_next(true);
 	}
-		break;
+	break;
 	default:
 		break;
 	}
@@ -116,14 +118,16 @@ static void screen_btn_tracks_event_handler(lv_event_t *e)
 	{
 	case LV_EVENT_CLICKED:
 	{
-				if (tracks_is_up())
-				{
-					tracks_down();
-				} else {
-					tracks_up();
-				}
+		if (tracks_is_up())
+		{
+			tracks_down();
+		}
+		else
+		{
+			tracks_up();
+		}
 	}
-		break;
+	break;
 	default:
 		break;
 	}

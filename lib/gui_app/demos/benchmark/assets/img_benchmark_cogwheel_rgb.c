@@ -1,4 +1,4 @@
-#include "../../../lvgl.h"
+#include "../../../../gui/lvgl/lvgl.h"
 
 #if LV_USE_DEMO_BENCHMARK
 

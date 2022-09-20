@@ -1,7 +1,5 @@
-#include "../../../lvgl.h"
-
+#include "../../../../gui/lvgl/lvgl.h"
 #if LV_USE_DEMO_BENCHMARK
-
 
 /*******************************************************************************
  * Size: 28 px
@@ -351,9 +349,7 @@ static LV_ATTRIBUTE_LARGE_CONST const uint8_t gylph_bitmap[] = {
     0xbc, 0x1, 0xa2, 0x1, 0xf5, 0x10, 0x49, 0x80,
     0x7c, 0xea, 0xc, 0xc0, 0xf, 0x92, 0x0, 0x68,
     0xcf, 0xe1, 0x90, 0x0, 0xe6, 0x7e, 0x93, 0x0,
-    0xff, 0xe0, 0x0
-};
-
+    0xff, 0xe0, 0x0};
 
 /*---------------------
  *  GLYPH DESCRIPTION
@@ -387,85 +383,70 @@ static const lv_font_fmt_txt_glyph_dsc_t glyph_dsc[] = {
     {.bitmap_index = 1700, .adv_w = 403, .box_w = 25, .box_h = 15, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 1855, .adv_w = 247, .box_w = 16, .box_h = 15, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 1953, .adv_w = 250, .box_w = 17, .box_h = 20, .ofs_x = -1, .ofs_y = -5},
-    {.bitmap_index = 2081, .adv_w = 233, .box_w = 13, .box_h = 15, .ofs_x = 1, .ofs_y = 0}
-};
+    {.bitmap_index = 2081, .adv_w = 233, .box_w = 13, .box_h = 15, .ofs_x = 1, .ofs_y = 0}};
 
 /*---------------------
  *  CHARACTER MAPPING
  *--------------------*/
 
-
-
 /*Collect the unicode lists and glyph_id offsets*/
 static const lv_font_fmt_txt_cmap_t cmaps[] =
-{
     {
-        .range_start = 32, .range_length = 1, .glyph_id_start = 1,
-        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
-    },
-    {
-        .range_start = 97, .range_length = 26, .glyph_id_start = 2,
-        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
-    }
-};
+        {.range_start = 32, .range_length = 1, .glyph_id_start = 1, .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY},
+        {.range_start = 97, .range_length = 26, .glyph_id_start = 2, .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY}};
 
 /*-----------------
  *    KERNING
  *----------------*/
 
-
 /*Map glyph_ids to kern left classes*/
 static const uint8_t kern_left_class_mapping[] =
-{
-    0, 0, 1, 2, 3, 4, 5, 6,
-    0, 1, 0, 0, 7, 4, 1, 1,
-    2, 2, 8, 9, 10, 11, 0, 12,
-    12, 13, 12, 14
-};
+    {
+        0, 0, 1, 2, 3, 4, 5, 6,
+        0, 1, 0, 0, 7, 4, 1, 1,
+        2, 2, 8, 9, 10, 11, 0, 12,
+        12, 13, 12, 14};
 
 /*Map glyph_ids to kern right classes*/
 static const uint8_t kern_right_class_mapping[] =
-{
-    0, 0, 1, 2, 3, 3, 3, 0,
-    3, 2, 4, 5, 2, 2, 4, 4,
-    3, 4, 3, 4, 6, 7, 8, 9,
-    9, 10, 9, 11
-};
+    {
+        0, 0, 1, 2, 3, 3, 3, 0,
+        3, 2, 4, 5, 2, 2, 4, 4,
+        3, 4, 3, 4, 6, 7, 8, 9,
+        9, 10, 9, 11};
 
 /*Kern values between classes*/
 static const int8_t kern_class_values[] =
-{
-    0, 0, 1, 0, 0, 0, 0, 0,
-    -4, 0, 0, -2, 0, 0, 0, 0,
-    0, 0, 0, -7, -8, -4, 0, -3,
-    -4, 0, 0, 0, 3, 0, -3, -8,
-    -3, 0, 0, 0, 0, 0, 0, 6,
-    0, 0, 0, 0, -7, 0, 0, 0,
-    0, 0, 0, 0, -4, -7, -2, -4,
-    0, -4, 36, 19, 0, 0, 0, 4,
-    0, 0, -4, 0, -10, -3, 0, -8,
-    0, -4, -13, -9, -5, 0, 0, 0,
-    0, 22, 0, 0, 0, 0, 0, 0,
-    -4, -3, -5, -3, 0, -1, 7, 0,
-    7, -3, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, -4, -4, 0, 0, 0,
-    -8, 0, 0, 0, -6, 0, -4, 0,
-    0, -8, 0, -7, 0, -7, -3, 7,
-    0, -4, -13, -4, -4, 0, -8, 0,
-    3, -4, 0, -4, -13, 0, -4, 0,
-    0, -4, 0, 0, 0, 1, 0, -4,
-    -4, 0
-};
-
+    {
+        0, 0, 1, 0, 0, 0, 0, 0,
+        -4, 0, 0, -2, 0, 0, 0, 0,
+        0, 0, 0, -7, -8, -4, 0, -3,
+        -4, 0, 0, 0, 3, 0, -3, -8,
+        -3, 0, 0, 0, 0, 0, 0, 6,
+        0, 0, 0, 0, -7, 0, 0, 0,
+        0, 0, 0, 0, -4, -7, -2, -4,
+        0, -4, 36, 19, 0, 0, 0, 4,
+        0, 0, -4, 0, -10, -3, 0, -8,
+        0, -4, -13, -9, -5, 0, 0, 0,
+        0, 22, 0, 0, 0, 0, 0, 0,
+        -4, -3, -5, -3, 0, -1, 7, 0,
+        7, -3, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, -4, -4, 0, 0, 0,
+        -8, 0, 0, 0, -6, 0, -4, 0,
+        0, -8, 0, -7, 0, -7, -3, 7,
+        0, -4, -13, -4, -4, 0, -8, 0,
+        3, -4, 0, -4, -13, 0, -4, 0,
+        0, -4, 0, 0, 0, 1, 0, -4,
+        -4, 0};
 
 /*Collect the kern class' data in one place*/
 static const lv_font_fmt_txt_kern_classes_t kern_classes =
-{
-    .class_pair_values   = kern_class_values,
-    .left_class_mapping  = kern_left_class_mapping,
-    .right_class_mapping = kern_right_class_mapping,
-    .left_class_cnt      = 14,
-    .right_class_cnt     = 11,
+    {
+        .class_pair_values = kern_class_values,
+        .left_class_mapping = kern_left_class_mapping,
+        .right_class_mapping = kern_right_class_mapping,
+        .left_class_cnt = 14,
+        .right_class_cnt = 11,
 };
 
 /*--------------------
@@ -482,9 +463,7 @@ static lv_font_fmt_txt_dsc_t font_dsc = {
     .cmap_num = 2,
     .bpp = 4,
     .kern_classes = 1,
-    .bitmap_format = 1
-};
-
+    .bitmap_format = 1};
 
 /*-----------------
  *  PUBLIC FONT
@@ -492,17 +471,16 @@ static lv_font_fmt_txt_dsc_t font_dsc = {
 
 /*Initialize a public general font descriptor*/
 lv_font_t lv_font_benchmark_montserrat_28_compr_az = {
-    .get_glyph_dsc = lv_font_get_glyph_dsc_fmt_txt,    /*Function pointer to get glyph's data*/
-    .get_glyph_bitmap = lv_font_get_bitmap_fmt_txt,    /*Function pointer to get glyph's bitmap*/
-    .line_height = 26,          /*The maximum line height required by the font*/
-    .base_line = 5,             /*Baseline measured from the bottom of the line*/
+    .get_glyph_dsc = lv_font_get_glyph_dsc_fmt_txt, /*Function pointer to get glyph's data*/
+    .get_glyph_bitmap = lv_font_get_bitmap_fmt_txt, /*Function pointer to get glyph's bitmap*/
+    .line_height = 26,                              /*The maximum line height required by the font*/
+    .base_line = 5,                                 /*Baseline measured from the bottom of the line*/
 #if !(LVGL_VERSION_MAJOR == 6 && LVGL_VERSION_MINOR == 0)
     .subpx = LV_FONT_SUBPX_NONE,
 #endif
-    .dsc = &font_dsc           /*The custom font data. Will be accessed by `get_glyph_bitmap/dsc` */
+    .dsc = &font_dsc /*The custom font data. Will be accessed by `get_glyph_bitmap/dsc` */
 };
 
 #endif /*#if LV_FONT_BENCHMARK_MONTSERRAT_28_COMPR_AZ*/
 
 #endif
-

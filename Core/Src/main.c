@@ -28,6 +28,10 @@
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
 #include "stdio.h"
+#include "lvgl/lvgl.h"
+#include "lvgl_port/lv_port_disp.h"
+#include "lvgl_port/lv_port_indev.h"
+#include "demos/lv_demos.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,7 +62,24 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+/* static void lvgl_first_demo_start(void)
+{
+  lv_obj_t *btn = lv_btn_create(lv_scr_act());
+  lv_obj_set_pos(btn, 20, 10);
+  lv_obj_set_size(btn, 140, 50);
+  lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
+  lv_obj_set_pos(btn1, 20, 10);
+  lv_obj_set_size(btn1, 140, 50);
 
+  lv_obj_t *label = lv_label_create(btn);
+  lv_label_set_text(label, "button");
+
+  lv_obj_t *label1 = lv_label_create(lv_scr_act());
+  lv_label_set_text(label1, "Hello,world!");
+  lv_obj_align(label1, LV_ALIGN_CENTER, 0, 0);
+  lv_obj_align_to(btn, label1, LV_ALIGN_OUT_TOP_MID, 85, -20);
+  lv_obj_align_to(btn1, btn, LV_ALIGN_OUT_LEFT_MID, -30, 0);
+} */
 /* USER CODE END 0 */
 
 /**
@@ -92,11 +113,19 @@ int main(void)
   MX_FSMC_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 
   // POINT_COLOR = RED;
   // printf("LCD ID:%04X\r\n", lcddev.id); //将LCD ID打印到lcd_id数组
   // printf("Hello world\r\n");
+  lv_init();
+  lv_port_disp_init();
+  lv_port_indev_init();
+
+  HAL_TIM_Base_Start_IT(&htim6);
+  lv_demo_music();
+  // lvgl_first_demo_start();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,11 +135,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    POINT_COLOR = WHITE;
+    lv_task_handler();
+    /* POINT_COLOR = WHITE;
     BACK_COLOR = RED;
-    LCD_ShowString(10, 40, 240, 40, 24, "LCD_Test, 1234567890");
-    HAL_Delay(2000);
-    // HAL_GPIO_TogglePin(BL_GPIO_Port, BL_Pin);
+    LCD_ShowString(10, 40, 240, 40, 24, "LCD_Test, 1234567890"); */
+    // HAL_Delay(2000);
+    //  HAL_GPIO_TogglePin(BL_GPIO_Port, BL_Pin);
   }
   /* USER CODE END 3 */
 }

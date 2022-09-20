@@ -1,4 +1,4 @@
-#include "../../../lvgl.h"
+#include "../../../../gui/lvgl/lvgl.h"
 
 #if LV_USE_DEMO_STRESS
 
@@ -162,9 +162,7 @@ static LV_ATTRIBUTE_LARGE_CONST const uint8_t gylph_bitmap[] = {
     /* U+7A "z" */
     0x7f, 0xfd, 0x6f, 0xfe, 0xd0, 0x80, 0xb, 0xa0,
     0xc0, 0x12, 0xee, 0x0, 0x23, 0xd0, 0x0, 0x6a,
-    0xc4, 0x1, 0x23, 0x5f, 0xed
-};
-
+    0xc4, 0x1, 0x23, 0x5f, 0xed};
 
 /*---------------------
  *  GLYPH DESCRIPTION
@@ -198,85 +196,70 @@ static const lv_font_fmt_txt_glyph_dsc_t glyph_dsc[] = {
     {.bitmap_index = 505, .adv_w = 173, .box_w = 11, .box_h = 7, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 545, .adv_w = 106, .box_w = 7, .box_h = 7, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 570, .adv_w = 107, .box_w = 8, .box_h = 10, .ofs_x = -1, .ofs_y = -3},
-    {.bitmap_index = 607, .adv_w = 100, .box_w = 6, .box_h = 7, .ofs_x = 0, .ofs_y = 0}
-};
+    {.bitmap_index = 607, .adv_w = 100, .box_w = 6, .box_h = 7, .ofs_x = 0, .ofs_y = 0}};
 
 /*---------------------
  *  CHARACTER MAPPING
  *--------------------*/
 
-
-
 /*Collect the unicode lists and glyph_id offsets*/
 static const lv_font_fmt_txt_cmap_t cmaps[] =
-{
     {
-        .range_start = 32, .range_length = 1, .glyph_id_start = 1,
-        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
-    },
-    {
-        .range_start = 97, .range_length = 26, .glyph_id_start = 2,
-        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
-    }
-};
+        {.range_start = 32, .range_length = 1, .glyph_id_start = 1, .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY},
+        {.range_start = 97, .range_length = 26, .glyph_id_start = 2, .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY}};
 
 /*-----------------
  *    KERNING
  *----------------*/
 
-
 /*Map glyph_ids to kern left classes*/
 static const uint8_t kern_left_class_mapping[] =
-{
-    0, 0, 1, 2, 3, 4, 5, 6,
-    0, 1, 0, 0, 7, 4, 1, 1,
-    2, 2, 8, 9, 10, 11, 0, 12,
-    12, 13, 12, 14
-};
+    {
+        0, 0, 1, 2, 3, 4, 5, 6,
+        0, 1, 0, 0, 7, 4, 1, 1,
+        2, 2, 8, 9, 10, 11, 0, 12,
+        12, 13, 12, 14};
 
 /*Map glyph_ids to kern right classes*/
 static const uint8_t kern_right_class_mapping[] =
-{
-    0, 0, 1, 2, 3, 3, 3, 0,
-    3, 2, 4, 5, 2, 2, 4, 4,
-    3, 4, 3, 4, 6, 7, 8, 9,
-    9, 10, 9, 11
-};
+    {
+        0, 0, 1, 2, 3, 3, 3, 0,
+        3, 2, 4, 5, 2, 2, 4, 4,
+        3, 4, 3, 4, 6, 7, 8, 9,
+        9, 10, 9, 11};
 
 /*Kern values between classes*/
 static const int8_t kern_class_values[] =
-{
-    0, 0, 1, 0, 0, 0, 0, 0,
-    -2, 0, 0, -1, 0, 0, 0, 0,
-    0, 0, 0, -3, -3, -2, 0, -1,
-    -2, 0, 0, 0, 1, 0, -1, -3,
-    -1, 0, 0, 0, 0, 0, 0, 2,
-    0, 0, 0, 0, -3, 0, 0, 0,
-    0, 0, 0, 0, -2, -3, -1, -2,
-    0, -2, 15, 8, 0, 0, 0, 2,
-    0, 0, -2, 0, -4, -1, 0, -3,
-    0, -2, -5, -4, -2, 0, 0, 0,
-    0, 10, 0, 0, 0, 0, 0, 0,
-    -2, -1, -2, -1, 0, -1, 3, 0,
-    3, -1, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, -2, -2, 0, 0, 0,
-    -3, 0, 0, 0, -2, 0, -2, 0,
-    0, -3, 0, -3, 0, -3, -1, 3,
-    0, -2, -6, -2, -2, 0, -3, 0,
-    1, -2, 0, -2, -6, 0, -2, 0,
-    0, -2, 0, 0, 0, 0, 0, -2,
-    -2, 0
-};
-
+    {
+        0, 0, 1, 0, 0, 0, 0, 0,
+        -2, 0, 0, -1, 0, 0, 0, 0,
+        0, 0, 0, -3, -3, -2, 0, -1,
+        -2, 0, 0, 0, 1, 0, -1, -3,
+        -1, 0, 0, 0, 0, 0, 0, 2,
+        0, 0, 0, 0, -3, 0, 0, 0,
+        0, 0, 0, 0, -2, -3, -1, -2,
+        0, -2, 15, 8, 0, 0, 0, 2,
+        0, 0, -2, 0, -4, -1, 0, -3,
+        0, -2, -5, -4, -2, 0, 0, 0,
+        0, 10, 0, 0, 0, 0, 0, 0,
+        -2, -1, -2, -1, 0, -1, 3, 0,
+        3, -1, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, -2, -2, 0, 0, 0,
+        -3, 0, 0, 0, -2, 0, -2, 0,
+        0, -3, 0, -3, 0, -3, -1, 3,
+        0, -2, -6, -2, -2, 0, -3, 0,
+        1, -2, 0, -2, -6, 0, -2, 0,
+        0, -2, 0, 0, 0, 0, 0, -2,
+        -2, 0};
 
 /*Collect the kern class' data in one place*/
 static const lv_font_fmt_txt_kern_classes_t kern_classes =
-{
-    .class_pair_values   = kern_class_values,
-    .left_class_mapping  = kern_left_class_mapping,
-    .right_class_mapping = kern_right_class_mapping,
-    .left_class_cnt      = 14,
-    .right_class_cnt     = 11,
+    {
+        .class_pair_values = kern_class_values,
+        .left_class_mapping = kern_left_class_mapping,
+        .right_class_mapping = kern_right_class_mapping,
+        .left_class_cnt = 14,
+        .right_class_cnt = 11,
 };
 
 /*--------------------
@@ -293,9 +276,7 @@ static lv_font_fmt_txt_dsc_t font_dsc = {
     .cmap_num = 2,
     .bpp = 4,
     .kern_classes = 1,
-    .bitmap_format = 1
-};
-
+    .bitmap_format = 1};
 
 /*-----------------
  *  PUBLIC FONT
@@ -303,14 +284,14 @@ static lv_font_fmt_txt_dsc_t font_dsc = {
 
 /*Initialize a public general font descriptor*/
 lv_font_t lv_font_montserrat_12_compr_az = {
-    .get_glyph_dsc = lv_font_get_glyph_dsc_fmt_txt,    /*Function pointer to get glyph's data*/
-    .get_glyph_bitmap = lv_font_get_bitmap_fmt_txt,    /*Function pointer to get glyph's bitmap*/
-    .line_height = 13,          /*The maximum line height required by the font*/
-    .base_line = 3,             /*Baseline measured from the bottom of the line*/
+    .get_glyph_dsc = lv_font_get_glyph_dsc_fmt_txt, /*Function pointer to get glyph's data*/
+    .get_glyph_bitmap = lv_font_get_bitmap_fmt_txt, /*Function pointer to get glyph's bitmap*/
+    .line_height = 13,                              /*The maximum line height required by the font*/
+    .base_line = 3,                                 /*Baseline measured from the bottom of the line*/
 #if !(LVGL_VERSION_MAJOR == 6 && LVGL_VERSION_MINOR == 0)
     .subpx = LV_FONT_SUBPX_NONE,
 #endif
-    .dsc = &font_dsc           /*The custom font data. Will be accessed by `get_glyph_bitmap/dsc` */
+    .dsc = &font_dsc /*The custom font data. Will be accessed by `get_glyph_bitmap/dsc` */
 };
 
 #endif /*#if LV_FONT_MONTSERRAT_12_COMPR_AZ*/
