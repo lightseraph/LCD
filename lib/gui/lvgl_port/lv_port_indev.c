@@ -11,6 +11,7 @@
  *********************/
 #include "lv_port_indev.h"
 #include "../lvgl/lvgl.h"
+#include "touch.h"
 
 /*********************
  *      DEFINES
@@ -121,8 +122,8 @@ static void touchpad_get_xy(lv_coord_t *x, lv_coord_t *y)
 {
     /*Your code comes here*/
 
-    (*x) = 0;
-    (*y) = 0;
+    (*x) = tp_dev.x[0];
+    (*y) = tp_dev.y[0];
 }
 
 #else /*Enable this file at the top*/
