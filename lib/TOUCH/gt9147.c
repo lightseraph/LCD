@@ -298,9 +298,9 @@ u8 GT9147_Init(void)
 
 	CT_IIC_Init(); //初始化电容屏的I2C总线
 	GT_RST = 0;	   //复位
-	delay_ms(10);
+	HAL_Delay(10);
 	GT_RST = 1; //释放复位
-	delay_ms(10);
+	HAL_Delay(10);
 
 	/* GPIO_Initure.GPIO_Pin = GPIO_Pin_1;		   // PB1设置为输出无上下拉
 	GPIO_Initure.GPIO_Mode = GPIO_Mode_OUT;	   //输入
@@ -308,11 +308,11 @@ u8 GT9147_Init(void)
 	GPIO_Initure.GPIO_Speed = GPIO_High_Speed; //高速
 	GPIO_Init(GPIOB, &GPIO_Initure);		   //初始化 */
 
-	delay_ms(100);
+	HAL_Delay(100);
 	GT9147_RD_Reg(GT_PID_REG, temp, 4); //读取产品ID
 	temp[4] = 0;
 	// printf("CTP ID:%s\r\n", temp);		   //打印ID
-	if (strcmp((char *)temp, "9147") == 0) // ID==9147
+	if (strcmp((char *)temp, "911") == 0) // ID==9147
 	{
 		temp[0] = 0X02;
 		GT9147_WR_Reg(GT_CTRL_REG, temp, 1); //软复位GT9147
@@ -322,7 +322,7 @@ u8 GT9147_Init(void)
 			// printf("Default Ver:%d\r\n", temp[0]);
 			GT9147_Send_Cfg(1); //更新并保存配置
 		}
-		delay_ms(10);
+		HAL_Delay(10);
 		temp[0] = 0X00;
 		GT9147_WR_Reg(GT_CTRL_REG, temp, 1); //结束复位
 		return 0;

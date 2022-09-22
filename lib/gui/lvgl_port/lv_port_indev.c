@@ -1,5 +1,5 @@
 /**
- * @file lv_port_indev_templ.c
+ * @file lv_port_indev.c
  *
  */
 
@@ -85,6 +85,8 @@ void lv_port_indev_init(void)
 static void touchpad_init(void)
 {
     /*Your code comes here*/
+    TP_Init();
+    // GT9147_Init();
 }
 
 /*Will be called by the library to read the touchpad*/
@@ -113,7 +115,9 @@ static void touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
 static bool touchpad_is_pressed(void)
 {
     /*Your code comes here*/
-
+    tp_dev.scan(0);
+    if (tp_dev.sta & TP_PRES_DOWN)
+        return true;
     return false;
 }
 
