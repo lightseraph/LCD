@@ -85,7 +85,7 @@ void lv_port_indev_init(void)
 static void touchpad_init(void)
 {
     /*Your code comes here*/
-    TP_Init();
+    tp_dev.init();
     // GT9147_Init();
 }
 

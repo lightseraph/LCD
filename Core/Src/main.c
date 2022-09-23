@@ -33,6 +33,7 @@
 #include "lvgl_port/lv_port_disp.h"
 #include "lvgl_port/lv_port_indev.h"
 #include "demos/lv_demos.h"
+#include "sram.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,7 +121,7 @@ int main(void)
   lv_init();
   lv_port_disp_init();
   lv_port_indev_init();
-
+  SRAM_Init();
   HAL_TIM_Base_Start_IT(&htim6);
   // lv_demo_music();
   // lv_demo_stress();

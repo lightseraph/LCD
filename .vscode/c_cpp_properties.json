@@ -10,6 +10,8 @@
             "includePath": [
                 "/home/light/project/LCD/include",
                 "/home/light/project/LCD",
+                "/home/light/project/LCD/lib/XMRAM",
+                "/home/light/project/LCD/lib/SRAM",
                 "/home/light/project/LCD/lib/gui_app",
                 "/home/light/project/LCD/lib/gui",
                 "/home/light/project/LCD/lib/TOUCH",
@@ -19,7 +21,6 @@
                 "/home/light/project/LCD/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                 "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc",
                 "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
-                "/home/light/project/LCD/lib/IIC",
                 "/home/light/project/LCD/lib/custom",
                 "/home/light/project/LCD/lib/generated",
                 ""
@@ -29,6 +30,8 @@
                 "path": [
                     "/home/light/project/LCD/include",
                     "/home/light/project/LCD",
+                    "/home/light/project/LCD/lib/XMRAM",
+                    "/home/light/project/LCD/lib/SRAM",
                     "/home/light/project/LCD/lib/gui_app",
                     "/home/light/project/LCD/lib/gui",
                     "/home/light/project/LCD/lib/TOUCH",
@@ -38,7 +41,6 @@
                     "/home/light/project/LCD/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                     "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc",
                     "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
-                    "/home/light/project/LCD/lib/IIC",
                     "/home/light/project/LCD/lib/custom",
                     "/home/light/project/LCD/lib/generated",
                     ""
@@ -53,6 +55,7 @@
                 "STM32F407ZGTx",
                 ""
             ],
+            "cStandard": "c99",
             "compilerPath": "/home/light/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc",
             "compilerArgs": [
                 "-mthumb",

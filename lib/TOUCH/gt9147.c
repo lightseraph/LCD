@@ -278,7 +278,7 @@ void GT9147_RD_Reg(u16 reg, u8 *buf, u8 len)
 u8 GT9147_Init(void)
 {
 	u8 temp[5];
-	// GPIO_InitTypeDef GPIO_Initure;
+	GPIO_InitTypeDef GPIO_InitStruct;
 
 	/* RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE); //开启GPIOB时钟
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE); //开启GPIOC时钟
@@ -302,6 +302,11 @@ u8 GT9147_Init(void)
 	GT_RST = 1; //释放复位
 	HAL_Delay(10);
 
+	GPIO_InitStruct.Pin = CT_INT_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+	HAL_GPIO_Init(CT_INT_GPIO_Port, &GPIO_InitStruct);
 	/* GPIO_Initure.GPIO_Pin = GPIO_Pin_1;		   // PB1设置为输出无上下拉
 	GPIO_Initure.GPIO_Mode = GPIO_Mode_OUT;	   //输入
 	GPIO_Initure.GPIO_PuPd = GPIO_PuPd_NOPULL; //上拉
