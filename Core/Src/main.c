@@ -34,11 +34,12 @@
 #include "lvgl_port/lv_port_indev.h"
 #include "demos/lv_demos.h"
 #include "sram.h"
+#include "generated/events_init.h"
+#include "generated/gui_guider.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -64,7 +65,36 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/* static void lvgl_first_demo_start(void)
+/*
+static void event_handler(lv_obj_t *obj, lv_event_t event)
+{
+  switch (event.code)
+  {
+  case LV_EVENT_PRESSED:
+    break;
+  case LV_EVENT_RELEASED:
+
+    break;
+
+  default:
+    break;
+  }
+}
+*/
+/* void vUint16ConvertString(u16 *usWdata, u8 *Rstr, u16 usNBytes)
+{
+  u8 i, j;
+  i = j = 0;
+  while (i < usNBytes)
+  {
+    if ((i % 2) == 0)
+      Rstr[i++] = (u8)(usWdata[j] & 0xff);
+    else
+      Rstr[i++] = (u8)(usWdata[j++] >> 8);
+  }
+} */
+
+static void lvgl_first_demo_start(void)
 {
   lv_obj_t *btn = lv_btn_create(lv_scr_act());
   lv_obj_set_pos(btn, 20, 10);
@@ -72,16 +102,35 @@ void SystemClock_Config(void);
   lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
   lv_obj_set_pos(btn1, 20, 10);
   lv_obj_set_size(btn1, 140, 50);
+  lv_obj_add_flag(btn1, LV_OBJ_FLAG_CHECKABLE);
 
   lv_obj_t *label = lv_label_create(btn);
   lv_label_set_text(label, "button");
+
+  lv_obj_t *coord_x = lv_label_create(lv_scr_act());
+  lv_obj_set_size(coord_x, 120, 20);
+
+  lv_obj_t *coord_y = lv_label_create(lv_scr_act());
+  lv_obj_set_size(coord_y, 120, 20);
+
+  lv_obj_t *sw = lv_switch_create(lv_scr_act());
 
   lv_obj_t *label1 = lv_label_create(lv_scr_act());
   lv_label_set_text(label1, "Hello,world!");
   lv_obj_align(label1, LV_ALIGN_CENTER, 0, 0);
   lv_obj_align_to(btn, label1, LV_ALIGN_OUT_TOP_MID, 85, -20);
   lv_obj_align_to(btn1, btn, LV_ALIGN_OUT_LEFT_MID, -30, 0);
-} */
+  lv_obj_align_to(coord_x, label1, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+  lv_obj_align_to(coord_y, coord_x, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+  lv_obj_align_to(sw, coord_y, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+
+  // vUint16ConvertString(&(tp_dev.x), x, 2);
+  // vUint16ConvertString(&(tp_dev.y), y, 2);
+
+  lv_label_set_text_fmt(coord_x, "X: %d", tp_dev.x[0]);
+  lv_label_set_text_fmt(coord_y, "Y: %d", tp_dev.y[0]);
+}
+// lv_ui guider_ui;
 /* USER CODE END 0 */
 
 /**
@@ -124,11 +173,14 @@ int main(void)
   SRAM_Init();
   HAL_TIM_Base_Start_IT(&htim6);
   // lv_demo_music();
-  // lv_demo_stress();
+  //  lv_demo_stress();
   // lv_demo_benchmark();
-  lv_demo_widgets();
-  //  lvgl_first_demo_start();
-  /* USER CODE END 2 */
+  // lv_demo_widgets();
+  lvgl_first_demo_start();
+  // setup_ui(&guider_ui);
+  // events_init(&guider_ui);
+
+  /*USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */

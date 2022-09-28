@@ -64,7 +64,7 @@ MEMORY
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
 CCMRAM (xrw)      : ORIGIN = 0x10000000, LENGTH = 64K
 FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 1024K
-MALLOC(rw)      : ORIGIN = 0x6800000, LENGTH = 1024K
+COLOR_BUF(rw)      : ORIGIN = 0x68000000, LENGTH = 1024K
 }
 
 /* Define output sections */
@@ -194,16 +194,16 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-  .malloc :
+  .color_buf :
   {
-    . = ALIGN(4)
-    __MALLOC_SYMBOLS = .;
-    *(.malloc)
-    *(.malloc*)
+    . = ALIGN(4);
+    __COLOR_BUF_SYMBOLS = .;
+    *(.color_buf)
+    *(.color_buf*)
 
-    . = ALIGN(4)
-    __EMALLOC_SYMBOLS = .;
-  } >MALLOC AT> FLASH
+    . = ALIGN(4);
+    __ECOLOR_BUF_SYMBOLS = .;
+  } >COLOR_BUF AT> FLASH
 
   /* Remove information from the standard libraries */
   /DISCARD/ :

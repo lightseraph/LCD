@@ -7,13 +7,14 @@
 #define LV_EXAMPLES_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /*********************
  *      INCLUDES
  *********************/
-#include "../lvgl.h"
+#include "lvgl/lvgl.h"
 
 #include "styles/lv_example_style.h"
 #include "get_started/lv_example_get_started.h"
@@ -26,21 +27,21 @@ extern "C" {
 #include "others/lv_example_others.h"
 #include "libs/lv_example_libs.h"
 
-/*********************
- *      DEFINES
- *********************/
+    /*********************
+     *      DEFINES
+     *********************/
 
-/**********************
- *      TYPEDEFS
- **********************/
+    /**********************
+     *      TYPEDEFS
+     **********************/
 
-/**********************
- * GLOBAL PROTOTYPES
- **********************/
+    /**********************
+     * GLOBAL PROTOTYPES
+     **********************/
 
-/**********************
- *      MACROS
- **********************/
+    /**********************
+     *      MACROS
+     **********************/
 
 #ifdef __cplusplus
 } /*extern "C"*/

@@ -7,7 +7,8 @@
 #define LVGL_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /***************************
@@ -18,9 +19,9 @@ extern "C" {
 #define LVGL_VERSION_PATCH 0
 #define LVGL_VERSION_INFO ""
 
-/*********************
- *      INCLUDES
- *********************/
+    /*********************
+     *      INCLUDES
+     *********************/
 
 #include "src/misc/lv_log.h"
 #include "src/misc/lv_timer.h"
@@ -38,6 +39,7 @@ extern "C" {
 #include "src/core/lv_refr.h"
 #include "src/core/lv_disp.h"
 #include "src/core/lv_theme.h"
+#include "src/core/lv_event.h"
 
 #include "src/font/lv_font.h"
 #include "src/font/lv_font_loader.h"
@@ -110,31 +112,31 @@ extern "C" {
  * #endif
  *
  */
-#define LV_VERSION_CHECK(x,y,z) (x == LVGL_VERSION_MAJOR && (y < LVGL_VERSION_MINOR || (y == LVGL_VERSION_MINOR && z <= LVGL_VERSION_PATCH)))
+#define LV_VERSION_CHECK(x, y, z) (x == LVGL_VERSION_MAJOR && (y < LVGL_VERSION_MINOR || (y == LVGL_VERSION_MINOR && z <= LVGL_VERSION_PATCH)))
 
-/**
- * Wrapper functions for VERSION macros
- */
+    /**
+     * Wrapper functions for VERSION macros
+     */
 
-static inline int lv_version_major(void)
-{
-    return LVGL_VERSION_MAJOR;
-}
+    static inline int lv_version_major(void)
+    {
+        return LVGL_VERSION_MAJOR;
+    }
 
-static inline int lv_version_minor(void)
-{
-    return LVGL_VERSION_MINOR;
-}
+    static inline int lv_version_minor(void)
+    {
+        return LVGL_VERSION_MINOR;
+    }
 
-static inline int lv_version_patch(void)
-{
-    return LVGL_VERSION_PATCH;
-}
+    static inline int lv_version_patch(void)
+    {
+        return LVGL_VERSION_PATCH;
+    }
 
-static inline const char *lv_version_info(void)
-{
-    return LVGL_VERSION_INFO;
-}
+    static inline const char *lv_version_info(void)
+    {
+        return LVGL_VERSION_INFO;
+    }
 
 #ifdef __cplusplus
 } /*extern "C"*/
