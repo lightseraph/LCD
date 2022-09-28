@@ -65,14 +65,32 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/*
-static void event_handler(lv_obj_t *obj, lv_event_t event)
+
+static void event_handler(lv_event_t *event)
 {
-  switch (event.code)
+  lv_obj_t *obj = lv_event_get_target(event);
+  switch (lv_event_get_code(event))
   {
   case LV_EVENT_PRESSED:
     break;
   case LV_EVENT_RELEASED:
+
+    break;
+  case LV_EVENT_VALUE_CHANGED:
+    if (lv_event_get_user_data(event) == "sw1")
+    {
+      if (lv_obj_has_state(obj, LV_STATE_CHECKED))
+        HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, 0);
+      else
+        HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, 1);
+    }
+    else if (lv_event_get_user_data(event) == "sw2")
+    {
+      if (lv_obj_has_state(obj, LV_STATE_CHECKED))
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
+      else
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
+    }
 
     break;
 
@@ -80,7 +98,7 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
     break;
   }
 }
-*/
+
 /* void vUint16ConvertString(u16 *usWdata, u8 *Rstr, u16 usNBytes)
 {
   u8 i, j;
@@ -113,7 +131,10 @@ static void lvgl_first_demo_start(void)
   lv_obj_t *coord_y = lv_label_create(lv_scr_act());
   lv_obj_set_size(coord_y, 120, 20);
 
-  lv_obj_t *sw = lv_switch_create(lv_scr_act());
+  lv_obj_t *sw1 = lv_switch_create(lv_scr_act());
+  lv_obj_add_event_cb(sw1, event_handler, LV_EVENT_ALL, "sw1");
+  lv_obj_t *sw2 = lv_switch_create(lv_scr_act());
+  lv_obj_add_event_cb(sw2, event_handler, LV_EVENT_ALL, "sw2");
 
   lv_obj_t *label1 = lv_label_create(lv_scr_act());
   lv_label_set_text(label1, "Hello,world!");
@@ -122,7 +143,8 @@ static void lvgl_first_demo_start(void)
   lv_obj_align_to(btn1, btn, LV_ALIGN_OUT_LEFT_MID, -30, 0);
   lv_obj_align_to(coord_x, label1, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
   lv_obj_align_to(coord_y, coord_x, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
-  lv_obj_align_to(sw, coord_y, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+  lv_obj_align_to(sw1, coord_y, LV_ALIGN_OUT_BOTTOM_LEFT, -45, 30);
+  lv_obj_align_to(sw2, sw1, LV_ALIGN_OUT_RIGHT_MID, 40, 0);
 
   // vUint16ConvertString(&(tp_dev.x), x, 2);
   // vUint16ConvertString(&(tp_dev.y), y, 2);
@@ -180,7 +202,7 @@ int main(void)
   // setup_ui(&guider_ui);
   // events_init(&guider_ui);
 
-  /*USER CODE END 2 */
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
