@@ -10,6 +10,7 @@
             "includePath": [
                 "/home/light/project/LCD/include",
                 "/home/light/project/LCD",
+                "/home/light/project/LCD/lib/W25QXX",
                 "/home/light/project/LCD/lib/XMRAM",
                 "/home/light/project/LCD/lib/SRAM",
                 "/home/light/project/LCD/lib/gui_app",
@@ -24,8 +25,6 @@
                 "/home/light/project/LCD/lib/FATFS",
                 "/home/light/project/LCD/lib/MALLOC",
                 "/home/light/project/LCD/lib/SDIO",
-                "/home/light/project/LCD/lib/SPI",
-                "/home/light/project/LCD/lib/W25QXX",
                 ""
             ],
             "browse": {
@@ -33,6 +32,7 @@
                 "path": [
                     "/home/light/project/LCD/include",
                     "/home/light/project/LCD",
+                    "/home/light/project/LCD/lib/W25QXX",
                     "/home/light/project/LCD/lib/XMRAM",
                     "/home/light/project/LCD/lib/SRAM",
                     "/home/light/project/LCD/lib/gui_app",
@@ -47,8 +47,6 @@
                     "/home/light/project/LCD/lib/FATFS",
                     "/home/light/project/LCD/lib/MALLOC",
                     "/home/light/project/LCD/lib/SDIO",
-                    "/home/light/project/LCD/lib/SPI",
-                    "/home/light/project/LCD/lib/W25QXX",
                     ""
                 ]
             },

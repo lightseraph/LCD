@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -34,6 +35,7 @@
 #include "lvgl_port/lv_port_indev.h"
 #include "demos/lv_demos.h"
 #include "sram.h"
+#include "w25qxx.h"
 #include "generated/events_init.h"
 #include "generated/gui_guider.h"
 /* USER CODE END Includes */
@@ -77,14 +79,14 @@ static void event_handler(lv_event_t *event)
 
     break;
   case LV_EVENT_VALUE_CHANGED:
-    if (lv_event_get_user_data(event) == "sw1")
+    if (strcmp((char *)lv_event_get_user_data(event), "sw1") == 0)
     {
       if (lv_obj_has_state(obj, LV_STATE_CHECKED))
         HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, 0);
       else
         HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, 1);
     }
-    else if (lv_event_get_user_data(event) == "sw2")
+    else if (strcmp((char *)lv_event_get_user_data(event), "sw2") == 0)
     {
       if (lv_obj_has_state(obj, LV_STATE_CHECKED))
         HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
@@ -197,12 +199,14 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   MX_TIM6_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   lv_init();
   lv_port_disp_init();
   lv_port_indev_init();
   SRAM_Init();
+  W25QXX_Init();
   HAL_TIM_Base_Start_IT(&htim6);
   // lv_demo_music();
   //  lv_demo_stress();

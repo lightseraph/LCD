@@ -27,7 +27,7 @@ u16 W25QXX_TYPE = W25Q256; //默认是W25Q256
 void W25QXX_Init(void)
 {
 	u8 temp;
-	GPIO_InitTypeDef GPIO_Initure;
+	/* GPIO_InitTypeDef GPIO_Initure;
 
 	__HAL_RCC_GPIOB_CLK_ENABLE(); //使能GPIOB时钟
 
@@ -36,13 +36,13 @@ void W25QXX_Init(void)
 	GPIO_Initure.Mode = GPIO_MODE_OUTPUT_PP; //推挽输出
 	GPIO_Initure.Pull = GPIO_PULLUP;		 //上拉
 	GPIO_Initure.Speed = GPIO_SPEED_HIGH;	 //快速
-	HAL_GPIO_Init(GPIOB, &GPIO_Initure);	 //初始化
+	HAL_GPIO_Init(GPIOB, &GPIO_Initure);	 //初始化 */
 
-	W25QXX_CS = 1;							// SPI FLASH不选中
-	SPI1_Init();							//初始化SPI
-	SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_4); //设置为21M时钟,高速模式
-	W25QXX_TYPE = W25QXX_ReadID();			//读取FLASH ID.
-	if (W25QXX_TYPE == W25Q256)				// SPI FLASH为W25Q256
+	W25QXX_CS = 1;	// SPI FLASH不选中
+	MX_SPI1_Init(); //初始化SPI
+	// SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_4); //设置为21M时钟,高速模式
+	W25QXX_TYPE = W25QXX_ReadID(); //读取FLASH ID.
+	if (W25QXX_TYPE == W25Q256)	   // SPI FLASH为W25Q256
 	{
 		temp = W25QXX_ReadSR(3); //读取状态寄存器3，判断地址模式
 		if ((temp & 0X01) == 0)	 //如果不是4字节地址模式,则进入4字节地址模式
@@ -250,10 +250,10 @@ void W25QXX_Write(u8 *pBuffer, u32 WriteAddr, u16 NumByteToWrite)
 	u16 i;
 	u8 *W25QXX_BUF;
 	W25QXX_BUF = W25QXX_BUFFER;
-	secpos = WriteAddr / 4096;							  //扇区地址
-	secoff = WriteAddr % 4096;							  //在扇区内的偏移
-	secremain = 4096 - secoff;							  //扇区剩余空间大小
-	printf("ad:%X,nb:%X\r\n", WriteAddr, NumByteToWrite); //测试用
+	secpos = WriteAddr / 4096; //扇区地址
+	secoff = WriteAddr % 4096; //在扇区内的偏移
+	secremain = 4096 - secoff; //扇区剩余空间大小
+	// printf("ad:%X,nb:%X\r\n", WriteAddr, NumByteToWrite); //测试用
 	if (NumByteToWrite <= secremain)
 		secremain = NumByteToWrite; //不大于4096个字节
 	while (1)
