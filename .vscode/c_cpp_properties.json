@@ -21,6 +21,11 @@
                 "/home/light/project/LCD/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                 "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc",
                 "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                "/home/light/project/LCD/lib/FATFS",
+                "/home/light/project/LCD/lib/MALLOC",
+                "/home/light/project/LCD/lib/SDIO",
+                "/home/light/project/LCD/lib/SPI",
+                "/home/light/project/LCD/lib/W25QXX",
                 ""
             ],
             "browse": {
@@ -39,6 +44,11 @@
                     "/home/light/project/LCD/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                     "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc",
                     "/home/light/project/LCD/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                    "/home/light/project/LCD/lib/FATFS",
+                    "/home/light/project/LCD/lib/MALLOC",
+                    "/home/light/project/LCD/lib/SDIO",
+                    "/home/light/project/LCD/lib/SPI",
+                    "/home/light/project/LCD/lib/W25QXX",
                     ""
                 ]
             },

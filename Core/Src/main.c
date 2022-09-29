@@ -114,6 +114,15 @@ static void event_handler(lv_event_t *event)
 
 static void lvgl_first_demo_start(void)
 {
+  LV_IMG_DECLARE(debian_s);
+  static lv_style_t style;
+  lv_style_init(&style);
+  lv_style_set_bg_img_src(&style, &debian_s);
+  lv_obj_t *sy = lv_obj_create(lv_scr_act());
+  lv_obj_add_style(sy, &style, 0);
+  lv_obj_set_size(sy, 480, 800);
+  lv_obj_center(sy);
+
   lv_obj_t *btn = lv_btn_create(lv_scr_act());
   lv_obj_set_pos(btn, 20, 10);
   lv_obj_set_size(btn, 140, 50);
@@ -124,6 +133,7 @@ static void lvgl_first_demo_start(void)
 
   lv_obj_t *label = lv_label_create(btn);
   lv_label_set_text(label, "button");
+  lv_obj_align_to(label, btn, LV_ALIGN_CENTER, 0, 0);
 
   lv_obj_t *coord_x = lv_label_create(lv_scr_act());
   lv_obj_set_size(coord_x, 120, 20);
