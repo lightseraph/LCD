@@ -36,6 +36,9 @@
 #include "demos/lv_demos.h"
 #include "sram.h"
 #include "w25qxx.h"
+#include "exfuns.h"
+#include "ff.h"
+#include "malloc.h"
 #include "generated/events_init.h"
 #include "generated/gui_guider.h"
 /* USER CODE END Includes */
@@ -116,14 +119,14 @@ static void event_handler(lv_event_t *event)
 
 static void lvgl_first_demo_start(void)
 {
-  LV_IMG_DECLARE(debian_s);
+  /* LV_IMG_DECLARE(debian_s);
   static lv_style_t style;
   lv_style_init(&style);
   lv_style_set_bg_img_src(&style, &debian_s);
   lv_obj_t *sy = lv_obj_create(lv_scr_act());
   lv_obj_add_style(sy, &style, 0);
   lv_obj_set_size(sy, 480, 800);
-  lv_obj_center(sy);
+  lv_obj_center(sy); */
 
   lv_obj_t *btn = lv_btn_create(lv_scr_act());
   lv_obj_set_pos(btn, 20, 10);
@@ -174,7 +177,8 @@ static void lvgl_first_demo_start(void)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  u32 total, free;
+  u8 res = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -200,6 +204,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM6_Init();
   MX_SPI1_Init();
+
   /* USER CODE BEGIN 2 */
 
   lv_init();
@@ -207,6 +212,22 @@ int main(void)
   lv_port_indev_init();
   SRAM_Init();
   W25QXX_Init();
+  exfuns_init();
+
+  res = f_mount(fs[1], "S:", 1);
+  if (res == 0X0D) // FLASH磁盘,FAT文件系统错误,重新格式化FLASH
+  {
+    LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Formatting..."); //格式化FLASH
+    res = f_mkfs("1:", 1, 4096);                                      //格式化FLASH,1,盘符;1,不需要引导区,8个扇区为1个簇
+    if (res == 0)
+    {
+      f_setlabel((const TCHAR *)"1:ALIENTEK");                          //设置Flash磁盘的名字为：ALIENTEK
+      LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Finish"); //格式化完成
+    }
+    else
+      LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Error "); //格式化失败
+    HAL_Delay(1000);
+  }
   HAL_TIM_Base_Start_IT(&htim6);
   // lv_demo_music();
   //  lv_demo_stress();

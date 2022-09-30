@@ -7,7 +7,7 @@
 /* storage control modules to the FatFs module with a defined API.       */
 /*-----------------------------------------------------------------------*/
 #include "diskio.h" /* FatFs lower layer API */
-#include "sdio_sdcard.h"
+//#include "sdio_sdcard.h"
 #include "w25qxx.h"
 #include "malloc.h"
 //////////////////////////////////////////////////////////////////////////////////
@@ -47,9 +47,9 @@ DSTATUS disk_initialize(
 	u8 res = 0;
 	switch (pdrv)
 	{
-	case SD_CARD:		 // SD卡
+	/* case SD_CARD:		 // SD卡
 		res = SD_Init(); // SD卡初始化
-		break;
+		break; */
 	case EX_FLASH:	   //外部flash
 		W25QXX_Init(); // W25QXX初始化
 		break;
@@ -79,7 +79,7 @@ DRESULT disk_read(
 		return RES_PARERR; // count不能等于0，否则返回参数错误
 	switch (pdrv)
 	{
-	case SD_CARD: // SD卡
+	/* case SD_CARD: // SD卡
 		res = SD_ReadDisk(buff, sector, count);
 		while (res) //读出错
 		{
@@ -87,7 +87,7 @@ DRESULT disk_read(
 			res = SD_ReadDisk(buff, sector, count);
 			// printf("sd rd error:%d\r\n",res);
 		}
-		break;
+		break; */
 	case EX_FLASH: //外部flash
 		for (; count > 0; count--)
 		{
@@ -123,14 +123,14 @@ DRESULT disk_write(
 		return RES_PARERR; // count不能等于0，否则返回参数错误
 	switch (pdrv)
 	{
-	case SD_CARD: // SD卡
+	/* case SD_CARD: // SD卡
 		res = SD_WriteDisk((u8 *)buff, sector, count);
 		while (res) //写出错
 		{
 			SD_Init(); //重新初始化SD卡
 			res = SD_WriteDisk((u8 *)buff, sector, count);
 		}
-		break;
+		break; */
 	case EX_FLASH: //外部flash
 		for (; count > 0; count--)
 		{
@@ -160,7 +160,7 @@ DRESULT disk_ioctl(
 )
 {
 	DRESULT res;
-	if (pdrv == SD_CARD) // SD卡
+	/* if (pdrv == SD_CARD) // SD卡
 	{
 		switch (cmd)
 		{
@@ -183,8 +183,8 @@ DRESULT disk_ioctl(
 			res = RES_PARERR;
 			break;
 		}
-	}
-	else if (pdrv == EX_FLASH) //外部FLASH
+	} */
+	if (pdrv == EX_FLASH) //外部FLASH
 	{
 		switch (cmd)
 		{

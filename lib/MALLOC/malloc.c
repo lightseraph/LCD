@@ -1,4 +1,5 @@
 #include "malloc.h"
+#include "sys.h"
 //////////////////////////////////////////////////////////////////////////////////
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 // ALIENTEK STM32F407开发板
@@ -19,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 //内存池(32字节对齐)
-__align(32) u8 mem1base[MEM1_MAX_SIZE];                                 //内部SRAM内存池
-__align(32) u8 mem2base[MEM2_MAX_SIZE] __attribute__((at(0X68000000))); //外部SRAM内存池
-__align(32) u8 mem3base[MEM3_MAX_SIZE] __attribute__((at(0X10000000))); //内部CCM内存池
+u8 mem1base[MEM1_MAX_SIZE] __attribute__((aligned(32)));                        //内部SRAM内存池
+u8 mem2base[MEM2_MAX_SIZE] __attribute__((section(".color_buf"), aligned(32))); //外部SRAM内存池
+u8 mem3base[MEM3_MAX_SIZE] __attribute__((section(".ccmram"), aligned(32)));    //内部CCM内存池
 //内存管理表
 u16 mem1mapbase[MEM1_ALLOC_TABLE_SIZE];                                                 //内部SRAM内存池MAP
 u16 mem2mapbase[MEM2_ALLOC_TABLE_SIZE] __attribute__((at(0X68000000 + MEM2_MAX_SIZE))); //外部SRAM内存池MAP
