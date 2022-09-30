@@ -38,9 +38,9 @@ void W25QXX_Init(void)
 	GPIO_Initure.Speed = GPIO_SPEED_HIGH;	 //快速
 	HAL_GPIO_Init(GPIOB, &GPIO_Initure);	 //初始化 */
 
-	W25QXX_CS = 1;	// SPI FLASH不选中
-	MX_SPI1_Init(); //初始化SPI
-	// SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_4); //设置为21M时钟,高速模式
+	W25QXX_CS = 1; // SPI FLASH不选中
+	// MX_SPI1_Init(); //初始化SPI
+	//  SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_4); //设置为21M时钟,高速模式
 	W25QXX_TYPE = W25QXX_ReadID(); //读取FLASH ID.
 	if (W25QXX_TYPE == W25Q256)	   // SPI FLASH为W25Q256
 	{

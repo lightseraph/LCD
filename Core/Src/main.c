@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "fatfs.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -33,14 +34,11 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_port/lv_port_disp.h"
 #include "lvgl_port/lv_port_indev.h"
-#include "demos/lv_demos.h"
+//#include "demos/lv_demos.h"
 #include "sram.h"
 #include "w25qxx.h"
-#include "exfuns.h"
-#include "ff.h"
-#include "malloc.h"
-#include "generated/events_init.h"
-#include "generated/gui_guider.h"
+//#include "generated/events_init.h"
+//#include "generated/gui_guider.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -168,6 +166,9 @@ static void lvgl_first_demo_start(void)
   lv_label_set_text_fmt(coord_y, "Y: %d", tp_dev.y[0]);
 }
 // lv_ui guider_ui;
+FATFS spi_fs;
+FIL fil;
+
 /* USER CODE END 0 */
 
 /**
@@ -204,7 +205,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM6_Init();
   MX_SPI1_Init();
-
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   lv_init();
@@ -212,9 +213,8 @@ int main(void)
   lv_port_indev_init();
   SRAM_Init();
   W25QXX_Init();
-  exfuns_init();
 
-  res = f_mount(fs[1], "S:", 1);
+  /* res = f_mount(fs[1], "S:", 1);
   if (res == 0X0D) // FLASH磁盘,FAT文件系统错误,重新格式化FLASH
   {
     // LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Formatting..."); //格式化FLASH
@@ -227,7 +227,7 @@ int main(void)
     else
       // LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Error "); //格式化失败
       HAL_Delay(1000);
-  }
+  } */
   HAL_TIM_Base_Start_IT(&htim6);
   // lv_demo_music();
   //  lv_demo_stress();
