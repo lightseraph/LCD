@@ -1,5 +1,5 @@
 /**
- * @file lv_port_fs_templ.h
+ * @file lv_port_fs.h
  *
  */
 

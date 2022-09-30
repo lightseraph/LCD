@@ -42,14 +42,14 @@ void W25QXX_Init(void)
 	MX_SPI1_Init(); //初始化SPI
 	// SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_4); //设置为21M时钟,高速模式
 	W25QXX_TYPE = W25QXX_ReadID(); //读取FLASH ID.
-	if (W25QXX_TYPE == W25Q128)	   // SPI FLASH为W25Q256
+	if (W25QXX_TYPE == W25Q256)	   // SPI FLASH为W25Q256
 	{
 		temp = W25QXX_ReadSR(3); //读取状态寄存器3，判断地址模式
 		if ((temp & 0X01) == 0)	 //如果不是4字节地址模式,则进入4字节地址模式
 		{
-			// W25QXX_CS = 0;							  //选中
-			// SPI1_ReadWriteByte(W25X_Enable4ByteAddr); //发送进入4字节地址模式指令
-			// W25QXX_CS = 1;							  //取消片选
+			W25QXX_CS = 0;							  //选中
+			SPI1_ReadWriteByte(W25X_Enable4ByteAddr); //发送进入4字节地址模式指令
+			W25QXX_CS = 1;							  //取消片选
 		}
 	}
 }
@@ -167,7 +167,7 @@ void W25QXX_Read(u8 *pBuffer, u32 ReadAddr, u16 NumByteToRead)
 	u16 i;
 	W25QXX_CS = 0;					   //使能器件
 	SPI1_ReadWriteByte(W25X_ReadData); //发送读取命令
-	if (W25QXX_TYPE == W25Q128)		   //如果是W25Q256的话地址为4字节的，要发送最高8位
+	if (W25QXX_TYPE == W25Q256)		   //如果是W25Q256的话地址为4字节的，要发送最高8位
 	{
 		SPI1_ReadWriteByte((u8)((ReadAddr) >> 24));
 	}
@@ -191,7 +191,7 @@ void W25QXX_Write_Page(u8 *pBuffer, u32 WriteAddr, u16 NumByteToWrite)
 	W25QXX_Write_Enable();				  // SET WEL
 	W25QXX_CS = 0;						  //使能器件
 	SPI1_ReadWriteByte(W25X_PageProgram); //发送写页命令
-	if (W25QXX_TYPE == W25Q128)			  //如果是W25Q256的话地址为4字节的，要发送最高8位
+	if (W25QXX_TYPE == W25Q256)			  //如果是W25Q256的话地址为4字节的，要发送最高8位
 	{
 		SPI1_ReadWriteByte((u8)((WriteAddr) >> 24));
 	}
@@ -315,7 +315,7 @@ void W25QXX_Erase_Sector(u32 Dst_Addr)
 	W25QXX_Wait_Busy();
 	W25QXX_CS = 0;						  //使能器件
 	SPI1_ReadWriteByte(W25X_SectorErase); //发送扇区擦除指令
-	if (W25QXX_TYPE == W25Q128)			  //如果是W25Q256的话地址为4字节的，要发送最高8位
+	if (W25QXX_TYPE == W25Q256)			  //如果是W25Q256的话地址为4字节的，要发送最高8位
 	{
 		SPI1_ReadWriteByte((u8)((Dst_Addr) >> 24));
 	}

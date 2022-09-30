@@ -217,16 +217,16 @@ int main(void)
   res = f_mount(fs[1], "S:", 1);
   if (res == 0X0D) // FLASH磁盘,FAT文件系统错误,重新格式化FLASH
   {
-    LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Formatting..."); //格式化FLASH
-    res = f_mkfs("1:", 1, 4096);                                      //格式化FLASH,1,盘符;1,不需要引导区,8个扇区为1个簇
+    // LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Formatting..."); //格式化FLASH
+    res = f_mkfs("S:", 1, 4096); //格式化FLASH,1,盘符;1,不需要引导区,8个扇区为1个簇
     if (res == 0)
     {
-      f_setlabel((const TCHAR *)"1:ALIENTEK");                          //设置Flash磁盘的名字为：ALIENTEK
-      LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Finish"); //格式化完成
+      f_setlabel((const TCHAR *)"1:ALIENTEK"); //设置Flash磁盘的名字为：ALIENTEK
+      // LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Finish"); //格式化完成
     }
     else
-      LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Error "); //格式化失败
-    HAL_Delay(1000);
+      // LCD_ShowString(30, 150, 200, 16, 16, "Flash Disk Format Error "); //格式化失败
+      HAL_Delay(1000);
   }
   HAL_TIM_Base_Start_IT(&htim6);
   // lv_demo_music();

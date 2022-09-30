@@ -108,7 +108,7 @@ void INTX_DISABLE(void)
 void INTX_ENABLE(void)
 {
     __ASM volatile("CPSIE   I");
-    __ASM volatile("BX, LR");
+    __ASM volatile("BX  LR");
 }
 //设置栈顶地址
 // addr:栈顶地址
